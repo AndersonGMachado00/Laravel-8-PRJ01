@@ -4,7 +4,7 @@
     <button type="submit"><-- Pagina Inicial</button>
 </form>
 <hr>
-<form action="{{route('produtos.store')}}" method="post">
+<form action="{{route('produtos.store')}}" method="post" enctype="multipart/form-data" >
     @include('admin.produtos._reuso.form')
 </form>
 <hr>

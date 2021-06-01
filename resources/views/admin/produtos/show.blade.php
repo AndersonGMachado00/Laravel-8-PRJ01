@@ -5,13 +5,17 @@
 </form>
 <hr>
 <UL>
-    <li><strong>Descricao:</strong> {{$produtos->descricao}}</li> 
+    <li><strong>Descricao:</strong> {{$produtos->descricao}}</li>
     <li><strong>Unidade: </strong>{{$produtos->unidade}}</li>
     <li><strong>Valor: </strong>{{$produtos->valor}}</li>
+    <img src="{{ url("storage/{$produtos->imagem}") }}" alt="{{ $produtos->descricao }}" style="max-width:80px;">
+
+
+
 </UL>
 
 <form action="{{route('produtos.delete', $produtos->id)}}" method="post">
     @csrf
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Deletar o produto</button>
-</form> 
+</form>

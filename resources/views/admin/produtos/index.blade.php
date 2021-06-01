@@ -13,9 +13,11 @@
     </form>
     <hr>
     @foreach ($produtos as $produto)
-    <p>{{ $produto -> descricao }}
+    <p>
+        <img src="{{ url("storage/{$produto ->imagem}") }}" alt="{{ $produto ->descricao }}" style="max-width:30px;">
+        {{ $produto -> descricao }}
             [<a href="{{ route('produtos.show', [$produto ->id]) }}">Ver</a>]
-            [<a href="{{ route('produtos.edit', [$produto ->id]) }}">Editar</a>]        
+            [<a href="{{ route('produtos.edit', [$produto ->id]) }}">Editar</a>]
         </p>
     @endforeach
     <hr>

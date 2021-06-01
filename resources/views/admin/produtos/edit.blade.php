@@ -4,7 +4,7 @@
     <button type="submit"><-- Pagina Inicial</button>
 </form>
 <hr>
-<form action="{{route('produtos.update', $produtos->id)}}" method="post">
+<form action="{{route('produtos.update', $produtos->id)}}" method="post" enctype="multipart/form-data">
     @method('PUT')
     @include('admin.produtos._reuso.form')
 </form>

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class StoreUpdateProdutos extends FormRequest
 {
@@ -23,10 +25,23 @@ class StoreUpdateProdutos extends FormRequest
      */
     public function rules()
     {
-        return [
-            'descricao' => 'required|min:3|max:160',      // 1 Forma de validar a entrada de dados no banco.
+        $id = $this->segment(2);
+
+        $Rules = [
+            'descricao' => ['required',       // 1 Forma de validar a entrada de dados no banco.
+                            'min:3',
+                            'max:160',
+                            //'unique:produtos,descricao,{$id},id',
+                            Rule::unique('Produtos')->ignore($id),
+                        ],
             'unidade' => ['required', 'min:1', 'max:10'], // 2 Forma de validar a entrada de dados no banco.
             'valor' => 'required',
+            'imagem' => ['required', 'image'],
         ];
+        if ($this->method == 'PUT')
+            {
+                $Rules['imagem'] = ['Nullable', 'image' ];
+            }
+        return $Rules;
     }
 }
